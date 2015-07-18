@@ -1,8 +1,6 @@
 # DocodocoJp
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/docodoco_jp`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+[www.docodoco.jp](http://www.docodoco.jp) api client library.
 
 ## Installation
 
@@ -22,7 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    options = {
+        ssl: false,              # => default: true
+        faraday_log: true,       # => default: false
+        charset: "euc_jp",       # => default: utf-8
+        response_type: :json     # => default: hashie
+      }
+
+    ipv4addr = "210.251.250.30"
+
+    docodoco_jp = DocodocoJp.new(apikey1, apikey2, options)
+    docodoco_jp.check_user # valid user, apikeys
+
+    result = docodoco_jp.search(ipv4addr)
+
+### enjoy!
 
 ## Development
 
@@ -37,3 +49,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
