@@ -73,7 +73,7 @@ class DocodocoJp
   end
 
   def search_api(ipadr = nil)
-    raise "arg: ipadr is not IP ADDRESS." unless ipadr.nil? || Resolv::IPv4::Regex =~ ipadr || Resolv::IPv6::Regex =~ ipadr
+    raise "arg: ipadr is not IP ADDRESS." unless ipadr.nil? || Resolv::IPv4::Regex =~ ipadr
     return api_request "/v4/search", api_params(format: :json, charset: config[:charset], ipadr: ipadr)
   end
 
