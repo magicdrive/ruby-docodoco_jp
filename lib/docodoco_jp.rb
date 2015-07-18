@@ -18,7 +18,7 @@ class DocodocoJp
   attr_reader :user_valid
 
   class << self
-    def default_option
+    def default_config
       return {
         ssl: true,
         faraday_log: false,
@@ -31,9 +31,10 @@ class DocodocoJp
   def initialize(apikey1, apikey2, options ={})
     @apikey = [apikey1, apikey2]
     @user_valid = false
-    @config = self.class.default_option
-    @config.merge({
+    @config = self.class.default_config
+    @config = @config.merge({
       ssl: options[:ssl],
+      faraday_log: options[:faraday_log],
       charset: options[:charset],
       response_type: options[:response_type]
     }) do |k, n, o|
@@ -72,8 +73,8 @@ class DocodocoJp
   end
 
   def search_api(ipadr = nil)
-    raise "arg: ipadr is not IP ADDRESS." unless ipadr.nil? || Resolv::IPv4::Regex =~ ipadr|| Resolv::IPv6::Regex =~ ipadr
-    return api_request "/v4/search", api_params( format: :json, charset: config[:charset], ipadr: ipadr)
+    raise "arg: ipadr is not IP ADDRESS." unless ipadr.nil? || Resolv::IPv4::Regex =~ ipadr || Resolv::IPv6::Regex =~ ipadr
+    return api_request "/v4/search", api_params(format: :json, charset: config[:charset], ipadr: ipadr)
   end
 
   def api_params(h = {})
@@ -83,15 +84,20 @@ class DocodocoJp
     }.merge(h)
   end
 
+  def connection
+    return @connection ||= ->() {
+      protocol = config[:ssl] ? "https:" : "http"
+      options  = config[:ssl] ? { ssl: { verify: true } } : {}
+      Faraday.new("#{protocol}//#{API_HOST}", options) do |builder|
+        builder.request  :url_encoded
+        builder.response :logger if config[:debug]
+        builder.adapter  :net_http
+      end
+    }.call()
+  end
+
   def api_request(path, params)
-    protocol = config[:ssl] ? "https:" : "http"
-    options = config[:ssl] ? { ssl: { verify: true } } : {}
-    @connection ||= Faraday.new("#{protocol}//#{API_HOST}", options) do |builder|
-      builder.request  :url_encoded
-      builder.response :logger if config[:debug]
-      builder.adapter  :net_http
-    end
-    response = @connection.get path, params
+    response = connection.get path, params
     return response
   end
 
