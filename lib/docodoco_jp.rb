@@ -89,11 +89,11 @@ class DocodocoJp
 
   def connection
     return @connection ||= ->() {
-      protocol = config[:ssl] ? "https:" : "http"
+      protocol = config[:ssl] ? "https" : "http"
       options  = config[:ssl] ? { ssl: { verify: true } } : {}
-      Faraday.new("#{protocol}//#{API_HOST}", options) do |builder|
+      Faraday.new("#{protocol}://#{API_HOST}", options) do |builder|
         builder.request  :url_encoded
-        builder.response :logger if config[:debug]
+        builder.response :logger if config[:faraday_log]
         builder.adapter  :net_http
       end
     }.call()
