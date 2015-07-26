@@ -53,12 +53,9 @@ describe DocodocoJp do
 
     it "invalid user with error" do
       docodoco_jp = DocodocoJp.new("--fuga--", "--hoge--")
-      begin
+      proc {
         result, json = docodoco_jp.check_user!()
-        (true).must_equal false
-      rescue DocodocoJp::ApiKeyInvalid => e
-        (true).must_equal true
-      end
+      }.must_raise DocodocoJp::ApiKeyInvalid
     end
   end
 
@@ -70,13 +67,10 @@ describe DocodocoJp do
     end
 
     it "invalid ipaddr" do
-      begin
+      proc {
         docodoco_jp = DocodocoJp.new(@key1, @key2)
         result = docodoco_jp.search("hogehoge")
-        (true).must_equal false
-      rescue DocodocoJp::IPv4ValidationError => e
-        (true).must_equal true
-      end
+      }.must_raise DocodocoJp::IPv4ValidationError
     end
   end
 end
