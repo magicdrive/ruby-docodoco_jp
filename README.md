@@ -33,19 +33,21 @@ Or install it yourself as:
 
 #### * ruby script
 
-    options = {
-        ssl: false,              # => default: true
-        faraday_log: true,       # => default: false
-        charset: "euc_jp",       # => default: utf-8
-        response_type: :json     # => default: hashie
-      }
+```ruby
+options = {
+    ssl: false,              # => default: true
+    faraday_log: true,       # => default: false
+    charset: "euc_jp",       # => default: utf-8
+    response_type: :json     # => default: hashie
+  }
 
-    ipv4addr = "210.251.250.30"
+ipv4addr = "210.251.250.30"
 
-    docodoco_jp = DocodocoJp.new(apikey1, apikey2, options)
-    docodoco_jp.check_user # valid user, apikeys
+docodoco_jp = DocodocoJp.new(apikey1, apikey2, options)
+docodoco_jp.check_user # valid user, apikeys
 
-    result = docodoco_jp.search(ipv4addr)
+result = docodoco_jp.search(ipv4addr)
+```
 
 ### enjoy!
 
