@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/docodoco_jp.svg)](http://badge.fury.io/rb/docodoco_jp)
+
 # DocodocoJp
 
 [www.docodoco.jp](http://www.docodoco.jp) api client library.
