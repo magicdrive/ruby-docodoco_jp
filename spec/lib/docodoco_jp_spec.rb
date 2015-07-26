@@ -10,7 +10,7 @@ require 'search_api_response_keys'
 
 describe DocodocoJp do
   before do
-    test_yaml = YAML.load_file(File.expand_path("~/.docodocojp/apikey.yml", File.dirname(__FILE__)))
+    test_yaml = YAML.load_file(File.expand_path("~/.docodoco_jp/apikey.yml", File.dirname(__FILE__)))
     @key1 = test_yaml["apikey1"]
     @key2 = test_yaml["apikey2"]
   end

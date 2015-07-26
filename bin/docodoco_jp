@@ -1,0 +1,46 @@
+#! /usr/bin/env ruby
+
+#
+# docodoco_jp
+# ----
+#
+# docodoco_jp -  http://www.docodoco.jp api client.
+#
+# Usage:
+#   docodoco_jp config --key1=KEY1 --key2=KEY2  # Setup the API key to cli use
+#   docodoco_jp config_check                    # Check configred API key
+#   docodoco_jp help [TASK]                     # Describe available tasks or one specific task
+#   docodoco_jp search [IP_ADDRESS]             # Search target IP_ADDRESS infomation
+#   docodoco_jp show_key                        # Show configred API key
+#
+#
+# The MIT License (MIT)
+#
+# Copyright (c) 2015 Hiroshi IKEGAMI
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+
+
+require "docodoco_jp/cli"
+
+DocodocoJp::CLI.start(ARGV)
+
+__END__
+

@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Hiroshi IKEGAMI"]
   spec.email         = ["hiroshi.ikegami@magicdrive.jp"]
 
-  spec.summary       = %q{Docodoco JP API Client.}
-  spec.description   = %q{Docodoco JP API Client.}
+  spec.summary       = %q{Location service www.docodoco.jp API Client.}
+  spec.description   = %q{Location service www.docodoco.jp API Client.}
   spec.homepage      = "https://github.com/magicdrive/ruby-docodoco_jp"
   spec.license       = "MIT"
 
@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "thor", "~> 0.0"
   spec.add_dependency "faraday", "~> 0.9"
   spec.add_dependency "hashie", "~> 3.0"
 
