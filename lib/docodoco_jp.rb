@@ -1,6 +1,8 @@
 # coding: utf-8
 
 require "docodoco_jp/version"
+require "docodoco_jp/ipv4_validation_error"
+require "docodoco_jp/api_key_invalid"
 
 require "faraday"
 require "hashie"
@@ -45,11 +47,6 @@ class DocodocoJp
     end
   end
 
-  def valid?
-    return check_user unless @user_valid
-    return @user_valid
-  end
-
   def search(ipadr = nil)
     result = hash_nomalize(JSON.parse(search_api(ipadr).body))
     if config[:response_type] == :hashie
@@ -67,13 +64,19 @@ class DocodocoJp
     return result, {status: status, message: message}
   end
 
+  def check_user!()
+    result, json = check_user
+    raise DocodocoJp::ApiKeyInvalid unless result
+    return result, json
+  end
+
   private
   def check_user_api()
     return api_request "/v4/user_info", api_params
   end
 
   def search_api(ipadr = nil)
-    raise "arg: ipadr is not IP ADDRESS." unless ipadr.nil? || Resolv::IPv4::Regex =~ ipadr
+    raise DocodocoJp::IPv4ValidationError unless ipadr.nil? || Resolv::IPv4::Regex =~ ipadr
     return api_request "/v4/search", api_params(format: :json, charset: config[:charset], ipadr: ipadr)
   end
 

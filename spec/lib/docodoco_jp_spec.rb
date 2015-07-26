@@ -5,6 +5,7 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'docodoco_jp'
 require 'yaml'
+
 require 'search_api_response_keys'
 
 describe DocodocoJp do
@@ -43,6 +44,22 @@ describe DocodocoJp do
       result, json = docodoco_jp.check_user()
       result.must_equal false
     end
+
+    it "normality with error" do
+      docodoco_jp = DocodocoJp.new(@key1, @key2)
+      result, json = docodoco_jp.check_user!()
+      result.must_equal true
+    end
+
+    it "invalid user with error" do
+      docodoco_jp = DocodocoJp.new("--fuga--", "--hoge--")
+      begin
+        result, json = docodoco_jp.check_user!()
+        (true).must_equal false
+      rescue DocodocoJp::ApiKeyInvalid => e
+        (true).must_equal true
+      end
+    end
   end
 
   describe "search_api" do
@@ -54,12 +71,12 @@ describe DocodocoJp do
 
     it "invalid ipaddr" do
       begin
-      docodoco_jp = DocodocoJp.new(@key1, @key2)
-      result = docodoco_jp.search("hogehoge")
-      result.must_equal {}
-    rescue => e
-      (true).must_equal true
-    end
+        docodoco_jp = DocodocoJp.new(@key1, @key2)
+        result = docodoco_jp.search("hogehoge")
+        (true).must_equal false
+      rescue DocodocoJp::IPv4ValidationError => e
+        (true).must_equal true
+      end
     end
   end
 end
