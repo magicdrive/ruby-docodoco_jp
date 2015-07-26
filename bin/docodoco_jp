@@ -7,11 +7,11 @@
 # docodoco_jp -  http://www.docodoco.jp api client.
 #
 # Usage:
-#   docodoco_jp check_key                       # Check apikey
+#   docodoco_jp config --key1=KEY1 --key2=KEY2  # Setup the API key to cli use
+#   docodoco_jp config_check                    # Check configred API key
 #   docodoco_jp help [TASK]                     # Describe available tasks or one specific task
-#   docodoco_jp search [IP_ADDRESS]             # Search target IP_ADDRESS infomation.
-#   docodoco_jp config --key1=KEY1 --key2=KEY2  # Setup the apikey to cli use
-#   docodoco_jp show_key                        # Show the apikey
+#   docodoco_jp search [IP_ADDRESS]             # Search target IP_ADDRESS infomation
+#   docodoco_jp show_key                        # Show configred API key
 #
 #
 # The MIT License (MIT)
@@ -38,7 +38,7 @@
 #
 
 
-require File.expand_path("../lib/docodoco_jp/cli", File.dirname(__FILE__))
+require "docodoco_jp/cli"
 
 DocodocoJp::CLI.start(ARGV)
 

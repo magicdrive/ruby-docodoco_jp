@@ -8,12 +8,12 @@ require 'docodoco_jp'
 
 class DocodocoJp
   class CLI < Thor
-    desc "search [IP_ADDRESS]", "Search target IP_ADDRESS infomation."
+    desc "search [IP_ADDRESS]", "Search target IP_ADDRESS infomation"
     def search(ipaddr)
       $stdout.puts JSON.pretty_generate(client.search(ipaddr))
     end
 
-    desc "config", "Setup the apikey to cli use"
+    desc "config", "Setup the API key to cli use"
     option :key1, required: true, type: :string
     option :key2, required: true, type: :string
     def config
@@ -24,14 +24,14 @@ class DocodocoJp
       self.invoke(:show_keys, [], {})
     end
 
-    desc "show_key", "Show the apikey"
-    def show_keys
+    desc "show_key", "Show configred API key"
+    def show_key
       key1, key2 = get_apikeys()
       $stdout.puts JSON.pretty_generate({apikey1: key1, apikey2: key2})
     end
 
-    desc "check_key", "Check apikey"
-    def check
+    desc "config_check", "Check configred API key"
+    def config_check
       result, json = client.check_user()
       $stdout.puts JSON.pretty_generate(json)
     end
@@ -54,11 +54,20 @@ class DocodocoJp
 
     def print_setup_help
       $stderr.puts <<-HELP
-        docodoco.jp apikeys not found. please execute `docodocojp setup` or edit ~/.docodoco_jp/apikey.yml
+API key not found..
+
+Gets the API key in the following URL,
+please execute `docodoco_jp config --key1=KEY1 --key2=KEY2` or edit ~/.docodoco_jp/apikey.yml
+
+`http://www.docodoco.jp`
+`https://admin.docodoco.jp/signup/`
+
       HELP
       exit 1
     end
 
   end
 end
+
+__END__
 

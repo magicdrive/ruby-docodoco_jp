@@ -20,6 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
+#### * command line
+
+    Usage:
+      docodoco_jp config --key1=KEY1 --key2=KEY2  # Setup the API key to cli use
+      docodoco_jp config_check                    # Check configred API key
+      docodoco_jp help [TASK]                     # Describe available tasks or one specific task
+      docodoco_jp search [IP_ADDRESS]             # Search target IP_ADDRESS infomation
+      docodoco_jp show_key                        # Show configred API key
+
+#### * ruby script
+
     options = {
         ssl: false,              # => default: true
         faraday_log: true,       # => default: false
