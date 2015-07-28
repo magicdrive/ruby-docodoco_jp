@@ -21,7 +21,7 @@ class DocodocoJp
       FileUtils.mkdir_p(File.expand_path("~/.docodoco_jp/"))
       File.open(File.expand_path("~/.docodoco_jp/apikey.yml"), "w") { |f| f.print(buf) }
       $stdout.puts "config ok."
-      self.invoke(:show_keys, [], {})
+      self.invoke(:show_key, [], {})
     end
 
     desc "show_key", "Show configred API key"
