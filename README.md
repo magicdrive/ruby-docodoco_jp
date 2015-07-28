@@ -34,6 +34,11 @@ Or install it yourself as:
 #### * ruby script
 
 ```ruby
+require 'docodoco_jp'
+
+apikey1 = "YOURAPIKEY1"
+apikey2 = "YOURAPIKEY2"
+
 options = {
     ssl: false,              # => default: true
     faraday_log: true,       # => default: false
