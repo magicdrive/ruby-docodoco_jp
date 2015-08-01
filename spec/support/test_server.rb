@@ -11,6 +11,7 @@ module DocodocoJpSpec
 
         params = Rack::Utils.parse_nested_query(env['QUERY_STRING'])
 
+        return response_body__invalid_key(params) unless params["key1"] == "xxxxx" && params["key2"] == "yyyyy"
         response = case path
                    when "/v4/user_info"
                      response_body__user_info(params)
@@ -86,34 +87,29 @@ module DocodocoJpSpec
       end
 
       def response_body__user_info(params)
-        body = if params["key1"] == "xxxxx" && params["key2"] == "yyyyy"
-                 body=<<-BODY
+        body=<<-BODY
 <?xml version="1.0" encoding="UTF-8"?>
 <docodoco>
     <user_status>201</user_status>
     <user_status_message>Commercial Use</user_status_message>
 </docodoco>
-                 BODY
-               else
-                 body=<<-BODY
+        BODY
+
+        return [ 200, {"Content-Type" => 'application/xml; charset="UTF-8"'}, [body]]
+      end
+
+      def response_body__invalid_key(params)
+        body=<<-BODY
 <?xml version="1.0" encoding="UTF-8"?>
 <docodoco>
     <user_status>401</user_status>
     <user_status_message>Unauthorized</user_status_message>
 </docodoco>
-                 BODY
-               end
+        BODY
 
         return [ 200, {"Content-Type" => 'application/xml; charset="UTF-8"'}, [body]]
       end
 
-
-      def digest_body(body)
-        parts = body.split("\n")
-        string_body = parts.join
-        digest = Digest::MD5.hexdigest(string_body) unless string_body.empty?
-        [digest, parts]
-      end
     end
   end
 end
