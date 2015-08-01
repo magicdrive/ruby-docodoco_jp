@@ -1,5 +1,5 @@
-# conding: utf-8
-#
+# coding: utf-8
+
 require 'rack'
 
 module DocodocoJpSpec
