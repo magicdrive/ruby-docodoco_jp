@@ -1,5 +1,5 @@
-[![Gem Version](https://badge.fury.io/rb/docodoco_jp.svg)](http://badge.fury.io/rb/docodoco_jp)
 [![Build Status](https://travis-ci.org/magicdrive/ruby-docodoco_jp.svg?branch=master)](https://travis-ci.org/magicdrive/ruby-docodoco_jp)
+[![Gem Version](https://badge.fury.io/rb/docodoco_jp.svg)](http://badge.fury.io/rb/docodoco_jp)
 
 # DocodocoJp
 
