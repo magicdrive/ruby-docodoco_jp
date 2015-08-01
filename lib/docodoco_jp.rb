@@ -13,13 +13,22 @@ require 'rexml/document'
 
 class DocodocoJp
 
-  API_HOST = 'api.docodoco.jp'
+  DEFAULT_API_HOST = 'api.docodoco.jp'
 
   attr_reader :apikey
   attr_reader :config
   attr_reader :user_valid
 
   class << self
+    def api_host=(host)
+      @api_host = host
+    end
+
+    def api_host
+      @api_host = DEFAULT_API_HOST if @api_host.nil?
+      return @api_host
+    end
+
     def default_config
       return {
         ssl: true,
@@ -91,7 +100,7 @@ class DocodocoJp
     return @connection ||= ->() {
       protocol = config[:ssl] ? "https" : "http"
       options  = config[:ssl] ? { ssl: { verify: true } } : {}
-      Faraday.new("#{protocol}://#{API_HOST}", options) do |builder|
+      Faraday.new("#{protocol}://#{DocodocoJp::api_host}", options) do |builder|
         builder.request  :url_encoded
         builder.response :logger if config[:faraday_log]
         builder.adapter  :net_http
