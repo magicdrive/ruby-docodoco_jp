@@ -1,4 +1,4 @@
-install: bundle install --path=./.bundle
+install: ./bin/setup
 script: bundle exec rake test
 language: ruby
 rvm:
