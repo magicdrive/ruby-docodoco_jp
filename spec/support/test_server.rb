@@ -1,5 +1,6 @@
+# conding: utf-8
+#
 require 'rack'
-require 'pry'
 
 module DocodocoJpSpec
   module Test
