@@ -37,8 +37,8 @@ Or install it yourself as:
 ```ruby
 require 'docodoco_jp'
 
-apikey1 = "YOURAPIKEY1"
-apikey2 = "YOURAPIKEY2"
+apikey1 = "YOUR_APIKEY_1"
+apikey2 = "YOUR_APIKEY_2"
 
 options = {
     ssl: false,              # => default: true
