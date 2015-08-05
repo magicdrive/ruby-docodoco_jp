@@ -9,7 +9,7 @@ require 'docodoco_jp'
 class DocodocoJp
   class CLI < Thor
     desc "search [IP_ADDRESS]", "Search target IP_ADDRESS infomation"
-    def search(ipaddr)
+    def search(ipaddr = nil)
       $stdout.puts JSON.pretty_generate(client.search(ipaddr))
     end
 
