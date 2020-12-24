@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'docodoco_jp/version'
 
 Gem::Specification.new do |spec|
-  spec.required_ruby_version = '>= 1.9.3'
+  spec.required_ruby_version = '>= 2.6.0'
   spec.name          = "docodoco_jp"
   spec.version       = DocodocoJp::VERSION
   spec.authors       = ["Hiroshi IKEGAMI"]
@@ -21,12 +21,12 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "thor", "~> 0.0"
-  spec.add_dependency "faraday", "~> 0.9"
+  spec.add_dependency "faraday", "~> 1.0"
   spec.add_dependency "hashie", "~> 3.0"
 
-  spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "minitest", "~> 5.14"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rack"
-  spec.add_development_dependency "bundler", "~> 1.0"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "bundler", "~> 2.0"
+  spec.add_development_dependency "rake", ">= 12.3.3"
 end

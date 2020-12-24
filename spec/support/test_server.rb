@@ -8,7 +8,7 @@ module DocodocoJpSpec
       def call(env)
         @root = File.expand_path(File.dirname(__FILE__))
         path = Rack::Utils.unescape(env['PATH_INFO'])
-        file = @root + "#{path}"
+        _file = @root + "#{path}"
 
         params = Rack::Utils.parse_nested_query(env['QUERY_STRING'])
 
