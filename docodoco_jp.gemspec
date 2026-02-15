@@ -21,13 +21,13 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "thor", '~> 1.0'
-  spec.add_dependency "faraday", "~> 1.0"
+  spec.add_dependency "faraday", "~> 2.0", '>= 2.4.1'
   spec.add_dependency "hashie", "~> 4.1.0"
   spec.add_dependency 'rexml', '~> 3.2', '>= 3.2.4'
 
   spec.add_development_dependency "minitest", "~> 5.14"
   spec.add_development_dependency "pry"
-  spec.add_development_dependency "rack"
+  spec.add_development_dependency "rack", "~>2.0"
   spec.add_development_dependency "bundler", '~> 2.2', '>= 2.2.27'
   spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency 'webrick', '~> 1.7'

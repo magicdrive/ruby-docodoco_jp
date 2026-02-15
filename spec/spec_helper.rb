@@ -4,6 +4,7 @@ $: << File.expand_path('../lib', File.dirname(__FILE__))
 $project_path = "#{File.expand_path("../", File.dirname(__FILE__))}"
 
 Dir[File.expand_path('../spec/support', File.dirname(__FILE__)) << "/**/*.rb"].each {|f| require f}
+require 'rack'
 
 
 @server_thread = Thread.new do
